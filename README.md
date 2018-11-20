@@ -1,7 +1,6 @@
-[![Build Status](https://travis-ci.org/sqshq/PiggyMetrics.svg?branch=master)](https://travis-ci.org/sqshq/PiggyMetrics)
-[![codecov.io](https://codecov.io/github/sqshq/PiggyMetrics/coverage.svg?branch=master)](https://codecov.io/github/sqshq/PiggyMetrics?branch=master)
+[![Build Status](https://travis-ci.com/afermon/PiggyMetrics-Infrastructure.svg?branch=master)](https://travis-ci.com/afermon/PiggyMetrics-Infrastructure)
+[![codecov](https://codecov.io/gh/afermon/PiggyMetrics-Infrastructure/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-Infrastructure)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/sqshq/PiggyMetrics/blob/master/LICENCE)
-[![Join the chat at https://gitter.im/sqshq/PiggyMetrics](https://badges.gitter.im/sqshq/PiggyMetrics.svg)](https://gitter.im/sqshq/PiggyMetrics?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 # Piggy Metrics
 
