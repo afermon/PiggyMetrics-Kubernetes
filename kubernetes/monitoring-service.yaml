@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: piggymetrics
+    tier: backend
+    app: monitoring
+  name: monitoring
+spec:
+  ports:
+  - name: "9000"
+    port: 9000
+    targetPort: 8080
+  selector:
+    project: piggymetrics
+    tier: backend
+    app: monitoring
+status:
+  loadBalancer: {}

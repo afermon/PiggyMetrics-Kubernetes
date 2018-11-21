@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Program Files\Docker\Kompose\kompose.exe convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: statistics-service
+  name: statistics-service
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: statistics-service
+    spec:
+      containers:
+      - env:
+        - name: CONFIG_SERVICE_PASSWORD
+          value: CONFIG_SERVICE_PASSWORD
+        - name: MONGODB_PASSWORD
+          value: MONGODB_PASSWORD
+        - name: STATISTICS_SERVICE_PASSWORD
+          value: STATISTICS_SERVICE_PASSWORD
+        image: afermon/piggymetrics-statistics-service
+        name: statistics-service
+        resources: {}
+      restartPolicy: Always
+status: {}

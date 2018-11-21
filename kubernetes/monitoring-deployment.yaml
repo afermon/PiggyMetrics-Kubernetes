@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    project: piggymetrics
+    tier: backend
+    app: monitoring
+  name: monitoring
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        project: piggymetrics
+        tier: backend
+        app: monitoring
+    spec:
+      containers:
+      - env:
+        - name: CONFIG_SERVICE_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: config_service_password
+        image: afermon/piggymetrics-monitoring
+        name: monitoring
+        ports:
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+status: {}

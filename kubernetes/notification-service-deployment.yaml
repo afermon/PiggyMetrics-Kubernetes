@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Program Files\Docker\Kompose\kompose.exe convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: notification-service
+  name: notification-service
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: notification-service
+    spec:
+      containers:
+      - env:
+        - name: CONFIG_SERVICE_PASSWORD
+          value: CONFIG_SERVICE_PASSWORD
+        - name: MONGODB_PASSWORD
+          value: MONGODB_PASSWORD
+        - name: NOTIFICATION_SERVICE_PASSWORD
+          value: NOTIFICATION_SERVICE_PASSWORD
+        image: afermon/piggymetrics-notification-service
+        name: notification-service
+        resources: {}
+      restartPolicy: Always
+status: {}

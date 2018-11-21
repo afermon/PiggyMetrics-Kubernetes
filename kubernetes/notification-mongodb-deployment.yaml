@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    project: piggymetrics
+    tier: database
+    app: notification-mongodb
+  name: notification-mongodb
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:    
+        project: piggymetrics
+        tier: database
+        app: notification-mongodb
+    spec:
+      containers:
+      - env:
+        - name: MONGODB_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: notification_mongodb_password
+        image: afermon/piggymetrics-mongodb
+        name: notification-mongodb
+        resources: {}
+      restartPolicy: Always
+status: {}

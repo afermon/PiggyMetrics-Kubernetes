@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2'
 services:
   rabbitmq:
     image: rabbitmq:3-management
@@ -26,8 +26,7 @@ services:
     image: afermon/piggymetrics-registry
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     ports:
       - 8761:8761
     logging:
@@ -41,8 +40,7 @@ services:
     image: afermon/piggymetrics-gateway
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     ports:
       - 80:4000
     logging:
@@ -60,8 +58,7 @@ services:
     image: afermon/piggymetrics-auth-service
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     logging:
       options:
         max-size: "10m"
@@ -85,8 +82,7 @@ services:
     image: afermon/piggymetrics-account-service
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     logging:
       options:
         max-size: "10m"
@@ -111,8 +107,7 @@ services:
     image: afermon/piggymetrics-statistics-service
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     logging:
       options:
         max-size: "10m"
@@ -136,8 +131,7 @@ services:
     image: afermon/piggymetrics-notification-service
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     logging:
       options:
         max-size: "10m"
@@ -159,8 +153,7 @@ services:
     image: afermon/piggymetrics-monitoring
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     ports:
       - 9000:8080
     logging:
@@ -174,8 +167,7 @@ services:
     image: afermon/piggymetrics-turbine-stream-service
     restart: always
     depends_on:
-      config:
-        condition: service_healthy
+      - config
     ports:
     - 8989:8989
     logging:

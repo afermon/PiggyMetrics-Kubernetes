@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Program Files\Docker\Kompose\kompose.exe convert
+    kompose.version: 1.17.0 (a74acad)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: turbine-stream-service
+  name: turbine-stream-service
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: turbine-stream-service
+    spec:
+      containers:
+      - env:
+        - name: CONFIG_SERVICE_PASSWORD
+          value: CONFIG_SERVICE_PASSWORD
+        image: afermon/piggymetrics-turbine-stream-service
+        name: turbine-stream-service
+        ports:
+        - containerPort: 8989
+        resources: {}
+      restartPolicy: Always
+status: {}

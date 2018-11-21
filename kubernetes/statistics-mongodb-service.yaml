@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-mongodb
+  labels:
+    app: piggymetrics
+    tier: database
+spec:
+  ports:
+  - name: "27017"
+    port: 27017
+    targetPort: 27017
+  selector:
+    app: piggymetrics
+    tier: database

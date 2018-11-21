@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    project: piggymetrics
+    tier: backend
+    app: account-service 
+  name: account-service
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        project: piggymetrics
+        tier: backend
+        app: account-service
+    spec:
+      containers:
+      - env:
+        - name: ACCOUNT_SERVICE_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: account_service_password
+        - name: CONFIG_SERVICE_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: config_service_password
+        - name: MONGODB_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: account_mongodb_password
+        ports:
+          - containerPort: 6000
+        image: afermon/piggymetrics-account-service
+        name: account-service
+        resources: {}
+      restartPolicy: Always
+status: {}
