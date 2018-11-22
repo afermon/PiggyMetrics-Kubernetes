@@ -1,15 +1,17 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: auth-mongodb
+  name: statistics-mongodb
   labels:
-    app: piggymetrics
+    project: piggymetrics
     tier: database
+    app: statistics-mongodb
 spec:
   ports:
   - name: "27017"
     port: 27017
     targetPort: 27017
   selector:
-    app: piggymetrics
+    project: piggymetrics
     tier: database
+    app: statistics-mongodb

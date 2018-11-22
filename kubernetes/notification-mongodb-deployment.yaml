@@ -8,10 +8,10 @@ metadata:
   name: notification-mongodb
 spec:
   replicas: 1
-  strategy: {}
+  strategy:
+    type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:    
         project: piggymetrics
         tier: database
@@ -24,6 +24,8 @@ spec:
             secretKeyRef:
               name: piggymetrics
               key: notification_mongodb_password
+        ports:
+          - containerPort: 27017
         image: afermon/piggymetrics-mongodb
         name: notification-mongodb
         resources: {}

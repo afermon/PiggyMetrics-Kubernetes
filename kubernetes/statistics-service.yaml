@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-    kompose.cmd: C:\Program Files\Docker\Kompose\kompose.exe convert
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
   labels:
-    io.kompose.service: config
-  name: config
+    project: piggymetrics
+    tier: backend
+    app: statistics-service
+  name: statistics-service
 spec:
   ports:
-  - name: "8888"
-    port: 8888
-    targetPort: 8888
+  - name: "7000"
+    port: 7000
+    targetPort: 7000
   selector:
-    io.kompose.service: config
+    project: piggymetrics
+    tier: backend
+    app: statistics-service
 status:
   loadBalancer: {}

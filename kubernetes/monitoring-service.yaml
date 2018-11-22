@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: monitoring
   name: monitoring
 spec:
@@ -13,7 +13,7 @@ spec:
     targetPort: 8080
   selector:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: monitoring
 status:
   loadBalancer: {}

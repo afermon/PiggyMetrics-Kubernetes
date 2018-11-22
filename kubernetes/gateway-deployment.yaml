@@ -3,18 +3,19 @@ kind: Deployment
 metadata:
   labels:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: gateway
   name: gateway
 spec:
   replicas: 1
-  strategy: {}
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
       creationTimestamp: null
       labels:
         project: piggymetrics
-        tier: backend
+        tier: infrastructure
         app: gateway
     spec:
       containers:

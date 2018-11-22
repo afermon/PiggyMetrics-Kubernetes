@@ -1,26 +1,29 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Program Files\Docker\Kompose\kompose.exe convert
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
   labels:
-    io.kompose.service: statistics-mongodb
+    project: piggymetrics
+    tier: database
+    app: statistics-mongodb
   name: statistics-mongodb
 spec:
   replicas: 1
-  strategy: {}
+  strategy:
+    type: Recreate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: statistics-mongodb
+        project: piggymetrics
+        tier: database
+        app: statistics-mongodb
     spec:
       containers:
       - env:
         - name: MONGODB_PASSWORD
-          value: MONGODB_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: statistics_mongodb_password
         image: afermon/piggymetrics-mongodb
         name: statistics-mongodb
         resources: {}

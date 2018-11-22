@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: gateway
   name: gateway
 spec:
@@ -13,7 +13,7 @@ spec:
     targetPort: 4000
   selector:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: gateway
 status:
   loadBalancer: {}

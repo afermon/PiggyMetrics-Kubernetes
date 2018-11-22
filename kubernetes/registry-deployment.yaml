@@ -1,26 +1,29 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: C:\Program Files\Docker\Kompose\kompose.exe convert
-    kompose.version: 1.17.0 (a74acad)
-  creationTimestamp: null
   labels:
-    io.kompose.service: registry
+    project: piggymetrics
+    tier: infrastructure
+    app: registry
   name: registry
 spec:
   replicas: 1
-  strategy: {}
+  strategy:
+    type: RollingUpdate
   template:
     metadata:
-      creationTimestamp: null
       labels:
-        io.kompose.service: registry
+        project: piggymetrics
+        tier: infrastructure
+        app: registry
     spec:
       containers:
       - env:
         - name: CONFIG_SERVICE_PASSWORD
-          value: CONFIG_SERVICE_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: config_service_password
         image: afermon/piggymetrics-registry
         name: registry
         ports:

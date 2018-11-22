@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: auth-service
   name: auth-service
 spec:
@@ -13,7 +13,7 @@ spec:
     targetPort: 5000
   selector:
     project: piggymetrics
-    tier: backend
+    tier: infrastructure
     app: auth-service
 status:
   loadBalancer: {}
