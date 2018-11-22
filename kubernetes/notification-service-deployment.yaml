@@ -34,6 +34,26 @@ spec:
             secretKeyRef:
               name: piggymetrics
               key: notification_service_password
+        - name: NOTIFICATION_EMAIL_HOST
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: notification_email_host
+        - name: NOTIFICATION_EMAIL_PORT
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: notification_email_port
+        - name: NOTIFICATION_EMAIL_USER
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: notification_email_user
+        - name: NOTIFICATION_EMAIL_PASS
+          valueFrom: 
+            secretKeyRef:
+              name: piggymetrics
+              key: notification_email_pass
         ports:
           - containerPort: 8000
         image: afermon/piggymetrics-notification-service
