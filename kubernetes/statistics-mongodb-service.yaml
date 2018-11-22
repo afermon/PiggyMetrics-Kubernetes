@@ -8,7 +8,7 @@ metadata:
     app: statistics-mongodb
 spec:
   ports:
-  - name: "27017"
+  - name: mongo
     port: 27017
     targetPort: 27017
   selector:

@@ -8,8 +8,8 @@ metadata:
   name: monitoring
 spec:
   ports:
-  - name: "9000"
-    port: 9000
+  - name: http
+    port: 8080
     targetPort: 8080
   selector:
     project: piggymetrics

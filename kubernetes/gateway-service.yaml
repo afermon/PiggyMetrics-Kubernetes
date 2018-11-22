@@ -9,7 +9,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - name: "80"
+  - name: http
     port: 80
     targetPort: 4000
     nodePort: 30080

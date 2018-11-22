@@ -8,7 +8,7 @@ metadata:
   name: turbine-stream-service
 spec:
   ports:
-  - name: "8989"
+  - name: http
     port: 8989
     targetPort: 8989
   selector:

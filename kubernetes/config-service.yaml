@@ -8,7 +8,7 @@ metadata:
   name: config
 spec:
   ports:
-  - name: "8888"
+  - name: http
     port: 8888
     targetPort: 8888
   selector:

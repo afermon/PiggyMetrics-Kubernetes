@@ -8,7 +8,7 @@ metadata:
   name: statistics-service
 spec:
   ports:
-  - name: "7000"
+  - name: http
     port: 7000
     targetPort: 7000
   selector:

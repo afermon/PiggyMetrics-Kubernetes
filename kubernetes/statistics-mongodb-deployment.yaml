@@ -24,6 +24,8 @@ spec:
             secretKeyRef:
               name: piggymetrics
               key: statistics_mongodb_password
+        ports:
+          - containerPort: 27017
         image: afermon/piggymetrics-mongodb
         name: statistics-mongodb
         resources: {}

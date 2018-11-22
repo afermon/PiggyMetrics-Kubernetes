@@ -8,9 +8,12 @@ metadata:
   name: rabbitmq
 spec:
   ports:
-  - name: "15672"
+  - name: http
     port: 15672
     targetPort: 15672
+  - name: amqp
+    port: 5672
+    targetPort: 5672
   selector:
     project: piggymetrics
     tier: infrastructure

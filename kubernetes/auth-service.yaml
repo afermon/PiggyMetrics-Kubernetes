@@ -8,7 +8,7 @@ metadata:
   name: auth-service
 spec:
   ports:
-  - name: "5000"
+  - name: http
     port: 5000
     targetPort: 5000
   selector:
