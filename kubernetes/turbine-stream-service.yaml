@@ -8,9 +8,12 @@ metadata:
   name: turbine-stream-service
 spec:
   ports:
-  - name: http
+  - name: exposed
     port: 8989
     targetPort: 8989
+  - name: http
+    port: 8080
+    targetPort: 8080
   selector:
     project: piggymetrics
     trier: infrastructure

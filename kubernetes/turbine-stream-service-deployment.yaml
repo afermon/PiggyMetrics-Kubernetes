@@ -28,6 +28,7 @@ spec:
         name: turbine-stream-service
         ports:
         - containerPort: 8989
+        - containerPort: 8080
         resources: {}
       restartPolicy: Always
 status: {}
