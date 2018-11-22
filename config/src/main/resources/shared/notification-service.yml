@@ -34,16 +34,16 @@ spring:
       database: piggymetrics
       port: 27017
   mail:
-    host: smtp.gmail.com
-    port: 465
-    username: dev-user
-    password: dev-password
+    host: ${NOTIFICATION_EMAIL_HOST}
+    port: ${NOTIFICATION_EMAIL_PORT}
+    username: $(NOTIFICATION_EMAIL_USER}
+    password: $(NOTIFICATION_EMAIL_PASS}
     properties:
       mail:
         smtp:
           auth: true
           socketFactory:
-            port: 465
+            port: ${NOTIFICATION_EMAIL_PORT}
             class: javax.net.ssl.SSLSocketFactory
             fallback: false
           ssl:
