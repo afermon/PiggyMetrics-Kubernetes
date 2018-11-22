@@ -36,8 +36,8 @@ spring:
   mail:
     host: ${NOTIFICATION_EMAIL_HOST}
     port: ${NOTIFICATION_EMAIL_PORT}
-    username: $(NOTIFICATION_EMAIL_USER}
-    password: $(NOTIFICATION_EMAIL_PASS}
+    username: ${NOTIFICATION_EMAIL_USER}
+    password: ${NOTIFICATION_EMAIL_PASS}
     properties:
       mail:
         smtp:
