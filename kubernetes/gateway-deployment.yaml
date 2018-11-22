@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   labels:
     project: piggymetrics
-    tier: infrastructure
+    tier: frontend
     app: gateway
   name: gateway
 spec:
@@ -15,7 +15,7 @@ spec:
       creationTimestamp: null
       labels:
         project: piggymetrics
-        tier: infrastructure
+        tier: frontend
         app: gateway
     spec:
       containers:
