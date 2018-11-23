@@ -18,7 +18,8 @@ spec:
         app: account-mongodb
     spec:
       containers:
-      - env:
+      - name: account-mongodb
+        env:
         - name: INIT_DUMP
           value: account-service-dump.js
         - name: MONGODB_PASSWORD
@@ -29,7 +30,4 @@ spec:
         ports:
           - containerPort: 27017
         image: afermon/piggymetrics-mongodb
-        name: account-mongodb
-        resources: {}
       restartPolicy: Always
-status: {}

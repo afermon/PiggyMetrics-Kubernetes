@@ -7,15 +7,16 @@ metadata:
     app: gateway
   name: gateway
 spec:
-  type: NodePort
+  # comment or delete the following line if you want to use a LoadBalancer
+  type: NodePort 
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
   ports:
   - name: http
     port: 80
     targetPort: 4000
-    nodePort: 30080
   selector:
     project: piggymetrics
     tier: frontend
     app: gateway
-status:
-  loadBalancer: {}

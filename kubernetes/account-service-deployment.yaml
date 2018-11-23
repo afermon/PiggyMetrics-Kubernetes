@@ -38,6 +38,4 @@ spec:
           - containerPort: 6000
         image: afermon/piggymetrics-account-service
         name: account-service
-        resources: {}
       restartPolicy: Always
-status: {}
