@@ -73,7 +73,7 @@ There's a bunch of common patterns in distributed systems, which could help us t
 
 ### Config service
 
-[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-config-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-config-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-config-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-config-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-config-service/blob/master/LICENCE)
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-config-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-config-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-config-service/blob/master/LICENCE)
 
 ##### Repository [afermon/PiggyMetrics-config-service](https://github.com/afermon/PiggyMetrics-config-service)
 
@@ -110,7 +110,7 @@ Also, you could use Repository [webhooks to automate this process](http://cloud.
 
 ### Auth service
 
-[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-auth-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-auth-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-auth-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-auth-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-auth-service/blob/master/LICENCE)
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-auth-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-auth-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-auth-service/blob/master/LICENCE)
 
 ##### Repository [afermon/PiggyMetrics-auth-service](https://github.com/afermon/PiggyMetrics-auth-service)
 
@@ -134,7 +134,7 @@ public List<DataPoint> getStatisticsByAccountName(@PathVariable String name) {
 
 ### API Gateway
 
-[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-gateway-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-gateway-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-gateway-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-gateway-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-gateway-service/blob/master/LICENCE)
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-gateway-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-gateway-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-gateway-service/blob/master/LICENCE)
 
 ##### Repository [afermon/PiggyMetrics-gateway-service](https://github.com/afermon/PiggyMetrics-gateway-service)
 
@@ -160,7 +160,7 @@ That means all requests starting with `/notifications` will be routed to Notific
 
 ### Service discovery
 
-[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-registry-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-registry-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-registry-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-registry-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-registry-service/blob/master/LICENCE)
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-registry-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-registry-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-registry-service/blob/master/LICENCE)
 
 ##### Repository [afermon/PiggyMetrics-registry-service](https://github.com/afermon/PiggyMetrics-registry-service)
 
@@ -218,11 +218,11 @@ public interface StatisticsServiceClient {
 
 ### Monitor dashboard
 
-[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-monitoring-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-monitoring-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-monitoring-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-monitoring-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-monitoring-service/blob/master/LICENCE)
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-monitoring-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-monitoring-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-monitoring-service/blob/master/LICENCE)
 
 ##### Repository [afermon/PiggyMetrics-registry-service](https://github.com/afermon/PiggyMetrics-registry-service)
 
-[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-turbine-stream-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-turbine-stream-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-turbine-stream-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-turbine-stream-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-turbine-stream-service/blob/master/LICENCE)
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-turbine-stream-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-turbine-stream-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-turbine-stream-service/blob/master/LICENCE)
 
 ##### Repository [afermon/PiggyMetrics-turbine-stream-service](https://github.com/afermon/PiggyMetrics-turbine-stream-service)
 
@@ -284,7 +284,7 @@ In this [configuration](https://github.com/sqshq/PiggyMetrics/blob/master/.travi
 
 ### Kubernetes (GKE)
   * TODO
-  
+
 ### Kubernetes (Local)
   * TODO
 
