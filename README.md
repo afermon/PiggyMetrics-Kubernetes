@@ -62,7 +62,7 @@ GET	| /notifications/settings/current	| Get current account notification setting
 PUT	| /notifications/settings/current	| Save current account notification settings	| × | ×
 
 #### Notes
-- Each microservice has it's own database, so there is no way to bypass API and access persistance data directly.
+- Each microservice has it's own database, so there is no way to bypass API and access persistance data directly. [![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-mongodb-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-mongodb-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-mongodb-service/blob/master/LICENCE) Repository [afermon/PiggyMetrics-mongodb-service](https://github.com/afermon/PiggyMetrics-mongodb-service)
 - In this project, I use MongoDB as a primary database for each service. It might also make sense to have a polyglot persistence architecture (сhoose the type of db that is best suited to service requirements).
 - Service-to-service communication is quite simplified: microservices talking using only synchronous REST API. Common practice in a real-world systems is to use combination of interaction styles. For example, perform synchronous GET request to retrieve data and use asynchronous approach via Message broker for create/update operations in order to decouple services and buffer messages. However, this brings us to the [eventual consistency](http://martinfowler.com/articles/microservice-trade-offs.html#consistency) world.
 
@@ -218,9 +218,17 @@ public interface StatisticsServiceClient {
 
 ### Monitor dashboard
 
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-monitoring-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-monitoring-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-monitoring-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-monitoring-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-monitoring-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-registry-service](https://github.com/afermon/PiggyMetrics-registry-service)
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-turbine-stream-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-turbine-stream-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-turbine-stream-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-turbine-stream-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-turbine-stream-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-turbine-stream-service](https://github.com/afermon/PiggyMetrics-turbine-stream-service)
+
 In this project configuration, each microservice with Hystrix on board pushes metrics to Turbine via Spring Cloud Bus (with AMQP broker). The Monitoring project is just a small Spring boot application with [Turbine](https://github.com/Netflix/Turbine) and [Hystrix Dashboard](https://github.com/Netflix/Hystrix/tree/master/hystrix-dashboard).
 
-See below [how to get it up and running](https://github.com/sqshq/PiggyMetrics#how-to-run-all-the-things).
+See below [how to get it up and running](https://github.com/afermon/PiggyMetrics-Kubernetes#how-to-run-all-the-things).
 
 Let's see our system behavior under load: Account service calls Statistics service and it responses with a vary imitation delay. Response timeout threshold is set to 1 second.
 
@@ -234,7 +242,7 @@ Let's see our system behavior under load: Account service calls Statistics servi
 ### Log analysis
 
 Centralized logging can be very useful when attempting to identify problems in a distributed environment. Elasticsearch, Logstash and Kibana stack lets you search and analyze your logs, utilization and network activity data with ease.
-Ready-to-go Docker configuration described [in my other project](http://github.com/sqshq/ELK-docker).
+Ready-to-go Docker configuration described [in sqshq other project](http://github.com/sqshq/ELK-docker).
 
 ### Distributed tracing
 
@@ -274,6 +282,13 @@ In this [configuration](https://github.com/sqshq/PiggyMetrics/blob/master/.travi
 
 ## How to run all the things?
 
+### Kubernetes (GKE)
+  * TODO
+  
+### Kubernetes (Local)
+  * TODO
+
+### Docker
 Keep in mind, that you are going to start 8 Spring Boot applications, 4 MongoDB instances and RabbitMq. Make sure you have `4 Gb` RAM available on your machine. You can always run just vital services though: Gateway, Registry, Config, Auth Service and Account Service.
 
 #### Before you start
