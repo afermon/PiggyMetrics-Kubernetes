@@ -1,0 +1,30 @@
+[submodule "services/PiggyMetrics-config-service"]
+	path = services/PiggyMetrics-config-service
+	url = https://github.com/afermon/PiggyMetrics-config-service
+[submodule "services/PiggyMetrics-registry-service"]
+	path = services/PiggyMetrics-registry-service
+	url = https://github.com/afermon/PiggyMetrics-registry-service
+[submodule "services/PiggyMetrics-gateway-service"]
+	path = services/PiggyMetrics-gateway-service
+	url = https://github.com/afermon/PiggyMetrics-gateway-service
+[submodule "services/PiggyMetrics-auth-service"]
+	path = services/PiggyMetrics-auth-service
+	url = https://github.com/afermon/PiggyMetrics-auth-service
+[submodule "services/PiggyMetrics-monitoring-service"]
+	path = services/PiggyMetrics-monitoring-service
+	url = https://github.com/afermon/PiggyMetrics-monitoring-service
+[submodule "services/PiggyMetrics-turbine-stream-service"]
+	path = services/PiggyMetrics-turbine-stream-service
+	url = https://github.com/afermon/PiggyMetrics-turbine-stream-service
+[submodule "services/PiggyMetrics-mongodb-service"]
+	path = services/PiggyMetrics-mongodb-service
+	url = https://github.com/afermon/PiggyMetrics-mongodb-service
+[submodule "services/PiggyMetrics-account-service"]
+	path = services/PiggyMetrics-account-service
+	url = https://github.com/afermon/PiggyMetrics-account-service
+[submodule "services/PiggyMetrics-statistics-service"]
+	path = services/PiggyMetrics-statistics-service
+	url = https://github.com/afermon/PiggyMetrics-statistics-service
+[submodule "services/PiggyMetrics-notification-service"]
+	path = services/PiggyMetrics-notification-service
+	url = https://github.com/afermon/PiggyMetrics-notification-service
