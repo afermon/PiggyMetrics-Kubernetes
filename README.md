@@ -72,9 +72,14 @@ There's a bunch of common patterns in distributed systems, which could help us t
 ![Infrastructure services](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/infrastructure-services.png)
 
 ### Config service
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-config-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-config-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-config-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-config-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-config-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-config-service](https://github.com/afermon/PiggyMetrics-config-service)
+
 [Spring Cloud Config](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html) is horizontally scalable centralized configuration service for distributed systems. It uses a pluggable repository layer that currently supports local storage, Git, and Subversion. 
 
-In this project, I use `native profile`, which simply loads config files from the local classpath. You can see `shared` directory in [Config service resources](https://github.com/sqshq/PiggyMetrics/tree/master/config/src/main/resources). Now, when Notification-service requests it's configuration, Config service responses with `shared/notification-service.yml` and `shared/application.yml` (which is shared between all client applications).
+In this project, I use `native profile`, which simply loads config files from the local classpath. You can see `shared` directory in [Config service resources](https://github.com/afermon/PiggyMetrics-config-service/tree/master/src/main/resources). Now, when Notification-service requests it's configuration, Config service responses with `shared/notification-service.yml` and `shared/application.yml` (which is shared between all client applications).
 
 ##### Client side usage
 Just build Spring Boot application with `spring-cloud-starter-config` dependency, autoconfiguration will do the rest.
@@ -91,7 +96,7 @@ spring:
 ```
 
 ##### With Spring Cloud Config, you can change app configuration dynamically. 
-For example, [EmailService bean](https://github.com/sqshq/PiggyMetrics/blob/master/notification-service/src/main/java/com/piggymetrics/notification/service/EmailServiceImpl.java) was annotated with `@RefreshScope`. That means, you can change e-mail text and subject without rebuild and restart Notification service application.
+For example, [EmailService bean](https://github.com/afermon/PiggyMetrics-notification-service/blob/master/src/main/java/com/piggymetrics/notification/service/EmailServiceImpl.java) was annotated with `@RefreshScope`. That means, you can change e-mail text and subject without rebuild and restart Notification service application.
 
 First, change required properties in Config server. Then, perform refresh request to Notification service:
 `curl -H "Authorization: Bearer #token#" -XPOST http://127.0.0.1:8000/notifications/refresh`
@@ -101,14 +106,19 @@ Also, you could use Repository [webhooks to automate this process](http://cloud.
 ##### Notes
 - There are some limitations for dynamic refresh though. `@RefreshScope` doesn't work with `@Configuration` classes and doesn't affect `@Scheduled` methods
 - `fail-fast` property means that Spring Boot application will fail startup immediately, if it cannot connect to the Config Service.
-- There are significant [security notes](https://github.com/sqshq/PiggyMetrics#security) below
+- There are significant [security notes](https://github.com/afermon/PiggyMetrics-Kubernetes#security) below
 
 ### Auth service
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-auth-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-auth-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-auth-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-auth-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-auth-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-auth-service](https://github.com/afermon/PiggyMetrics-auth-service)
+
 Authorization responsibilities are completely extracted to separate server, which grants [OAuth2 tokens](https://tools.ietf.org/html/rfc6749) for the backend resource services. Auth Server is used for user authorization as well as for secure machine-to-machine communication inside a perimeter.
 
 In this project, I use [`Password credentials`](https://tools.ietf.org/html/rfc6749#section-4.3) grant type for users authorization (since it's used only by native PiggyMetrics UI) and [`Client Credentials`](https://tools.ietf.org/html/rfc6749#section-4.4) grant for microservices authorization.
 
-Spring Cloud Security provides convenient annotations and autoconfiguration to make this really easy to implement from both server and client side. You can learn more about it in [documentation](http://cloud.spring.io/spring-cloud-security/spring-cloud-security.html) and check configuration details in [Auth Server code](https://github.com/sqshq/PiggyMetrics/tree/master/auth-service/src/main/java/com/piggymetrics/auth).
+Spring Cloud Security provides convenient annotations and autoconfiguration to make this really easy to implement from both server and client side. You can learn more about it in [documentation](http://cloud.spring.io/spring-cloud-security/spring-cloud-security.html) and check configuration details in [Auth Server code](https://github.com/afermon/PiggyMetrics-auth-service/tree/master/src/main/java/com/piggymetrics/auth).
 
 From the client side, everything works exactly the same as with traditional session-based authorization. You can retrieve `Principal` object from request, check user's roles and other stuff with expression-based access control and `@PreAuthorize` annotation.
 
@@ -123,6 +133,11 @@ public List<DataPoint> getStatisticsByAccountName(@PathVariable String name) {
 ```
 
 ### API Gateway
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-gateway-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-gateway-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-gateway-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-gateway-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-gateway-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-gateway-service](https://github.com/afermon/PiggyMetrics-gateway-service)
+
 As you can see, there are three core services, which expose external API to client. In a real-world systems, this number can grow very quickly as well as whole system complexity. Actually, hundreds of services might be involved in rendering of one complex webpage.
 
 In theory, a client could make requests to each of the microservices directly. But obviously, there are challenges and limitations with this option, like necessity to know all endpoints addresses, perform http request for each peace of information separately, merge the result on a client side. Another problem is non web-friendly protocols which might be used on the backend.
@@ -141,9 +156,13 @@ zuul:
 
 ```
 
-That means all requests starting with `/notifications` will be routed to Notification service. There is no hardcoded address, as you can see. Zuul uses [Service discovery](https://github.com/sqshq/PiggyMetrics/blob/master/README.md#service-discovery) mechanism to locate Notification service instances and also [Circuit Breaker and Load Balancer](https://github.com/sqshq/PiggyMetrics/blob/master/README.md#http-client-load-balancer-and-circuit-breaker), described below.
+That means all requests starting with `/notifications` will be routed to Notification service. There is no hardcoded address, as you can see. Zuul uses [Service discovery](https://github.com/afermon/PiggyMetrics-Kubernetes/blob/master/README.md#service-discovery) mechanism to locate Notification service instances and also [Circuit Breaker and Load Balancer](https://github.com/afermon/PiggyMetrics-Kubernetes/blob/master/README.md#http-client-load-balancer-and-circuit-breaker), described below.
 
 ### Service discovery
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-registry-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-registry-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-registry-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-registry-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-registry-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-registry-service](https://github.com/afermon/PiggyMetrics-registry-service)
 
 Another commonly known architecture pattern is Service discovery. It allows automatic detection of network locations for service instances, which could have dynamically assigned addresses because of auto-scaling, failures and upgrades.
 
