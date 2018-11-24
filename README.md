@@ -1,24 +1,28 @@
-[![Build Status](https://travis-ci.com/afermon/PiggyMetrics-Infrastructure.svg?branch=master)](https://travis-ci.com/afermon/PiggyMetrics-Infrastructure)
-[![codecov](https://codecov.io/gh/afermon/PiggyMetrics-Infrastructure/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-Infrastructure)
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/sqshq/PiggyMetrics/blob/master/LICENCE)
 
-# Piggy Metrics
+[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-Kubernetes/blob/master/LICENCE)
+
+# Piggy Metrics (Kubernetes)
 
 **A simple way to deal with personal finances**
 
-This is a proof-of-concept application, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud and Docker.
-With a pretty neat user interface, by the way.
+This is a proof-of-concept application, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud, Docker and Kubernetes. With a pretty neat user interface, by the way.
 
-![](https://cloud.githubusercontent.com/assets/6069066/13864234/442d6faa-ecb9-11e5-9929-34a9539acde0.png)
-![Piggy Metrics](https://cloud.githubusercontent.com/assets/6069066/13830155/572e7552-ebe4-11e5-918f-637a49dff9a2.gif)
+Forked from the awesome PiggyMetrics project [sqshq/PiggyMetrics](https://github.com/sqshq/PiggyMetrics)
+
+![Piggy Metrics](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/piggymetrics.gif)
 
 ## Functional services
 
 PiggyMetrics was decomposed into three core microservices. All of them are independently deployable applications, organized around certain business domains.
 
-<img width="880" alt="Functional services" src="https://cloud.githubusercontent.com/assets/6069066/13900465/730f2922-ee20-11e5-8df0-e7b51c668847.png">
+![Functional services](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/functional-services.png)
 
 #### Account service
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-account-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-account-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-account-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-account-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/afermon/PiggyMetrics-account-service/blob/master/LICENCE)
+
+##### Repository [afermon/PiggyMetrics-account-service](https://github.com/afermon/PiggyMetrics-account-service)
+
 Contains general user input logic and validation: incomes/expenses items, savings and account settings.
 
 Method	| Path	| Description	| User authenticated	| Available from UI
@@ -31,6 +35,11 @@ POST	| /accounts/	| Register new account	|   | ×
 
 
 #### Statistics service
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-statistics-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-statistics-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-statistics-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-statistics-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]((https://github.com/afermon/PiggyMetrics-statistics-service/blob/master/LICENCE))
+
+##### Repository [afermon/PiggyMetrics-statistics-service](https://github.com/afermon/PiggyMetrics-statistics-service)
+
 Performs calculations on major statistics parameters and captures time series for each account. Datapoint contains values, normalized to base currency and time period. This data is used to track cash flow dynamics in account lifetime.
 
 Method	| Path	| Description	| User authenticated	| Available from UI
@@ -42,6 +51,11 @@ PUT	| /statistics/{account}	| Create or update time series datapoint for specifi
 
 
 #### Notification service
+
+[![CircleCI](https://circleci.com/gh/afermon/PiggyMetrics-notification-service.svg?style=svg)](https://circleci.com/gh/afermon/PiggyMetrics-notification-service) [![codecov](https://codecov.io/gh/afermon/PiggyMetrics-notification-service/branch/master/graph/badge.svg)](https://codecov.io/gh/afermon/PiggyMetrics-notification-service) [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)]((https://github.com/afermon/PiggyMetrics-notification-service/blob/master/LICENCE))
+
+##### Repository [afermon/PiggyMetrics-notification-service](https://github.com/afermon/PiggyMetrics-notification-service)
+
 Stores users contact information and notification settings (like remind and backup frequency). Scheduled worker collects required information from other services and sends e-mail messages to subscribed customers.
 
 Method	| Path	| Description	| User authenticated	| Available from UI
@@ -56,7 +70,9 @@ PUT	| /notifications/settings/current	| Save current account notification settin
 
 ## Infrastructure services
 There's a bunch of common patterns in distributed systems, which could help us to make described core services work. [Spring cloud](http://projects.spring.io/spring-cloud/) provides powerful tools that enhance Spring Boot applications behaviour to implement those patterns. I'll cover them briefly.
-<img width="880" alt="Infrastructure services" src="https://cloud.githubusercontent.com/assets/6069066/13906840/365c0d94-eefa-11e5-90ad-9d74804ca412.png">
+
+![Infrastructure services](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/infrastructure-services.png)
+
 ### Config service
 [Spring Cloud Config](http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html) is horizontally scalable centralized configuration service for distributed systems. It uses a pluggable repository layer that currently supports local storage, Git, and Subversion. 
 
@@ -191,9 +207,9 @@ See below [how to get it up and running](https://github.com/sqshq/PiggyMetrics#h
 
 Let's see our system behavior under load: Account service calls Statistics service and it responses with a vary imitation delay. Response timeout threshold is set to 1 second.
 
-<img width="880" src="https://cloud.githubusercontent.com/assets/6069066/14194375/d9a2dd80-f7be-11e5-8bcc-9a2fce753cfe.png">
+![Hystrix Dashboard](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/hystrix-dashboard.png)
 
-<img width="212" src="https://cloud.githubusercontent.com/assets/6069066/14127349/21e90026-f628-11e5-83f1-60108cb33490.gif">	| <img width="212" src="https://cloud.githubusercontent.com/assets/6069066/14127348/21e6ed40-f628-11e5-9fa4-ed527bf35129.gif"> | <img width="212" src="https://cloud.githubusercontent.com/assets/6069066/14127346/21b9aaa6-f628-11e5-9bba-aaccab60fd69.gif"> | <img width="212" src="https://cloud.githubusercontent.com/assets/6069066/14127350/21eafe1c-f628-11e5-8ccd-a6b6873c046a.gif">
+![0ms](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/hystrix-0ms-delay.gif)	| ![500ms](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/hystrix-500ms-delay.gif) | ![800ms](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/hystrix-800ms-delay.gif) | ![1100ms](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/hystrix-1100ms-delay.gif)
 --- |--- |--- |--- |
 | `0 ms delay` | `500 ms delay` | `800 ms delay` | `1100 ms delay`
 | Well behaving system. The throughput is about 22 requests/second. Small number of active threads in Statistics service. The median service time is about 50 ms. | The number of active threads is growing. We can see purple number of thread-pool rejections and therefore about 30-40% of errors, but circuit is still closed. | Half-open state: the ratio of failed commands is more than 50%, the circuit breaker kicks in. After sleep window amount of time, the next request is let through. | 100 percent of the requests fail. The circuit is now permanently open. Retry after sleep time won't close circuit again, because the single request is too slow.
@@ -235,7 +251,7 @@ Deploying microservices, with their interdependence, is much more complex proces
 
 Here is a simple Continuous Delivery workflow, implemented in this project:
 
-<img width="880" src="https://cloud.githubusercontent.com/assets/6069066/14159789/0dd7a7ce-f6e9-11e5-9fbb-a7fe0f4431e3.png">
+![Delivery workflow](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/infrastructure-automation.png)
 
 In this [configuration](https://github.com/sqshq/PiggyMetrics/blob/master/.travis.yml), Travis CI builds tagged images for each successful git push. So, there are always `latest` image for each microservice on [Docker Hub](https://hub.docker.com/r/sqshq/) and older images, tagged with git commit hash. It's easy to deploy any of them and quickly rollback, if needed.
 
@@ -264,9 +280,18 @@ If you'd like to build images yourself (with some changes in the code, for examp
 - http://localhost:15672 - RabbitMq management (default login/password: guest/guest)
 
 #### Notes
-All Spring Boot applications require already running [Config Server](https://github.com/sqshq/PiggyMetrics#config-service) for startup. But we can start all containers simultaneously because of `depends_on` docker-compose option.
+All Spring Boot applications require already running [Config Server](https://github.com/afemron/PiggyMetrics-Kubernetes#config-service) for startup. But we can start all containers simultaneously because of `depends_on` docker-compose option.
 
 Also, Service Discovery mechanism needs some time after all applications startup. Any service is not available for discovery by clients until the instance, the Eureka server and the client all have the same metadata in their local cache, so it could take 3 heartbeats. Default heartbeat period is 30 seconds.
+
+## Todo
+
+* Kubernetes Config Maps
+* Kubernetes Service Discovery
+
+## Credits
+
+* Forked from [sqshq/PiggyMetrics](https://github.com/sqshq/PiggyMetrics)
 
 ## Contributions welcome!
 
