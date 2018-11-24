@@ -7,8 +7,6 @@
 
 This is a proof-of-concept application, which demonstrates [Microservice Architecture Pattern](http://martinfowler.com/microservices/) using Spring Boot, Spring Cloud, Docker and Kubernetes. With a pretty neat user interface, by the way.
 
-Forked from the awesome PiggyMetrics project [sqshq/PiggyMetrics](https://github.com/sqshq/PiggyMetrics)
-
 ![Piggy Metrics](https://github.com/afermon/PiggyMetrics-Kubernetes/raw/master/resources/piggymetrics.gif)
 
 ## Functional services
