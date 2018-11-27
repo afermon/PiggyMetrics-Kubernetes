@@ -282,10 +282,17 @@ In this [configuration](https://github.com/sqshq/PiggyMetrics/blob/master/.travi
 
 ## How to run all the things?
 
-### Kubernetes (GKE)
-  * TODO
+### Kubernetes
 
-### Kubernetes (Local)
+#### Local
+Windows or Mac you can get [Docker for Windows](https://www.docker.com/products/docker-desktop) and enable Kubernetes. This application runnign on your local computer may comsume a lot of resources, please cupdate docker for desktop settings to have at least `6 Gb` of RAM. Also, you can install the [Kubernetes WEB UI](https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/) and it will be easier to confirm the pod status and check the logs for any failures. 
+
+ - `cd .\kubernetes`
+ - Execute `kubectl create -f .\<deployment file>` for each file in order and wait for each individual service to be runing correctly. config, registry and gateway should be available first for other services to start correctly. 
+
+If you would like to delete all the resources and start over, you can execute `kubectl delete svc,deploy -l project=piggymetrics`
+
+#### Google Kubernetes Engine
   * TODO
 
 ### Docker
@@ -301,9 +308,7 @@ In this mode, all latest images will be pulled from Docker Hub.
 Just copy `docker-compose.yml` and hit `docker-compose up`
 
 #### Development mode
-If you'd like to build images yourself (with some changes in the code, for example), you have to clone all repository and build artifacts with maven. Then, run `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up`
-
-`docker-compose.dev.yml` inherits `docker-compose.yml` with additional possibility to build images locally and expose all containers ports for convenient development.
+If you'd like to build images yourself (with some changes in the code, for example), you have to clone all repository and build artifacts with maven. Then, build each individual image and update the docker conposer file with each individual image name.
 
 #### Important endpoints
 - http://localhost:80 - Gateway
