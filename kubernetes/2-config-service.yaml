@@ -1,21 +1,42 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: piggymetrics
+    tier: infrastructure
+    app: config
+  name: config
+spec:
+  ports:
+  - name: http
+    port: 8888
+    targetPort: 8888
+  selector:
+    project: piggymetrics
+    tier: infrastructure
+    app: config
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
     project: piggymetrics
     tier: infrastructure
-    app: registry
-  name: registry
+    app: config
+  name: config
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   template:
     metadata:
-      labels:
+      labels:    
         project: piggymetrics
         tier: infrastructure
-        app: registry
+        app: config
     spec:
       containers:
       - env:
@@ -24,10 +45,10 @@ spec:
             secretKeyRef:
               name: piggymetrics
               key: config_service_password
-        image: afermon/piggymetrics-registry
-        name: registry
+        image: afermon/piggymetrics-config
+        name: config
         ports:
-        - containerPort: 8761
+        - containerPort: 8888
         resources: {}
       restartPolicy: Always
 status: {}

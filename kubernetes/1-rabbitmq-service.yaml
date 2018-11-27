@@ -1,3 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: piggymetrics
+    tier: infrastructure
+    app: rabbitmq
+  name: rabbitmq
+spec:
+  ports:
+  - name: http
+    port: 15672
+    targetPort: 15672
+  - name: amqp
+    port: 5672
+    targetPort: 5672
+  selector:
+    project: piggymetrics
+    tier: infrastructure
+    app: rabbitmq
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:

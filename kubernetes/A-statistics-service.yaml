@@ -1,3 +1,24 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: piggymetrics
+    tier: backend
+    app: statistics-service
+  name: statistics-service
+spec:
+  ports:
+  - name: http
+    port: 7000
+    targetPort: 7000
+  selector:
+    project: piggymetrics
+    tier: backend
+    app: statistics-service
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:

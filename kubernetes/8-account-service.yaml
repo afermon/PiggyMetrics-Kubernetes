@@ -1,11 +1,32 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: piggymetrics
+    tier: backend
+    app: account-service
+  name: account-service
+spec:
+  ports:
+  - name: http
+    port: 6000
+    targetPort: 6000
+  selector:
+    project: piggymetrics
+    tier: backend
+    app: account-service
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   labels:
     project: piggymetrics
-    tier: infrastructure
-    app: auth-service
-  name: auth-service
+    tier: backend
+    app: account-service 
+  name: account-service
 spec:
   replicas: 1
   strategy: 
@@ -14,8 +35,8 @@ spec:
     metadata:
       labels:
         project: piggymetrics
-        tier: infrastructure
-        app: auth-service
+        tier: backend
+        app: account-service
     spec:
       containers:
       - env:
@@ -33,21 +54,9 @@ spec:
           valueFrom: 
             secretKeyRef:
               name: piggymetrics
-              key: auth_mongodb_password
-        - name: NOTIFICATION_SERVICE_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: piggymetrics
-              key: notification_service_password
-        - name: STATISTICS_SERVICE_PASSWORD
-          valueFrom: 
-            secretKeyRef:
-              name: piggymetrics
-              key: statistics_service_password
-        image: afermon/piggymetrics-auth-service
-        name: auth-service
+              key: account_mongodb_password
         ports:
-          - containerPort: 5000
-        resources: {}
+          - containerPort: 6000
+        image: afermon/piggymetrics-account-service
+        name: account-service
       restartPolicy: Always
-status: {}

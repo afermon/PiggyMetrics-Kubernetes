@@ -1,3 +1,27 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    project: piggymetrics
+    trier: infrastructure
+    app: turbine-stream-service
+  name: turbine-stream-service
+spec:
+  ports:
+  - name: exposed
+    port: 8989
+    targetPort: 8989
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    project: piggymetrics
+    trier: infrastructure
+    app: turbine-stream-service
+status:
+  loadBalancer: {}
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
