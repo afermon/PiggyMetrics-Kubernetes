@@ -289,6 +289,17 @@ Windows or Mac you can get [Docker for Windows](https://www.docker.com/products/
 
  - `cd .\kubernetes`
  - Execute `kubectl create -f .\<deployment file>` for each file in order and wait for each individual service to be runing correctly. config, registry and gateway should be available first for other services to start correctly. 
+- Gateway will be accesible at [http://localhost:30080](http://localhost:30080)
+
+##### Access the other services:
+To access any of the other services internal to the kubernetes cluster you can use the proxy `kubectl proxy` and then use the links below
+
+| Service                  | Comments              | URL                      |
+|--------------------------|-----------------------|--------------------------|            
+| Gateway                  |                       |http://localhost:30080|
+| Eureka Dashboard         |                       |http://localhost:8001/api/v1/namespaces/default/services/http:registry:8761/proxy/ |
+| Hystrix Dashboard        | Turbine stream link: http://turbine-stream-service:8080/turbine/turbine.stream | http://localhost:8001/api/v1/namespaces/default/services/http:monitoring:9000/proxy/hystrix/monitor?stream=http%3A%2F%2Fturbine-stream-service%3A8080%2Fturbine%2Fturbine.stream&title=PiggyMetrics |
+| RabbitMq management | (default login/password: guest/guest) | http://localhost:8001/api/v1/namespaces/default/services/http:rabbitmq:15672/proxy/ |
 
 If you would like to delete all the resources and start over, you can execute `kubectl delete svc,deploy -l project=piggymetrics`
 
